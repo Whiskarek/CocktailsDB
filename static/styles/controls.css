@@ -1,0 +1,46 @@
+.btn {
+    user-select: none;
+    font-family: sans-serif;
+    font-weight: 100;
+    border-radius: 25px;
+    background-color: #1059FF;
+    border: 3px solid #1059FF;
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #1048C8;
+    border: 3px solid #1048C8;
+}
+
+.btn:active {
+    position: relative;
+    top: 1px;
+}
+
+.btn-secondary {
+    user-select: none;
+    font-family: sans-serif;
+    font-weight: 100;
+    border-radius: 25px;
+    background-color: transparent;
+    border: 3px solid #1059FF;
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.btn-secondary:hover {
+    border: 3px solid #1048C8;
+}
+
+.btn-secondary:active {
+    position: relative;
+    top: 1px;
+}
