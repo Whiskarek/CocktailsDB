@@ -4,8 +4,8 @@ body {
 
 header {
     height: 50px;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-areas: "logo menu menu nav";
     align-items: center;
     padding-left: 12px;
     padding-right: 12px;
@@ -14,6 +14,24 @@ header {
     border-radius: 0 0 15px 15px;
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.25);
     user-select: none;
+}
+
+.header-left {
+    float: left;
+    grid-area: logo;
+}
+
+.header-right {
+    float: right !important;
+    grid-area: nav;
+}
+
+.header-right nav {
+    float: right !important;
+}
+
+.header-center {
+    grid-area: menu;
 }
 
 header ul {
@@ -26,29 +44,16 @@ header ul li {
     padding: 5px;
 }
 
-header .logo {
-    font-family: Arial;
-    font-weight: lighter;
-    color: white;
-    pointer-events: none;
-    user-select: none;
-}
-
-header nav.menu a {
-    font-family: 'Open Sans';
-    font-weight: 400;
-    color: white;
-    text-decoration: none;
-    font-size: 24px;
-}
-
-header nav.menu a:hover {
-    color: rgb(220, 220, 240);
-}
-
-@media (max-width: 600px) {
+@media screen and (max-width: 600px) {
     header {
-        flex-direction: column;
-        height: 140px;
+        height: auto;
+        grid-template-areas:
+            "logo nav"
+            "menu menu";
+    }
+
+    .header-center ul {
+        display: flex;
+        justify-content: space-evenly;
     }
 }
