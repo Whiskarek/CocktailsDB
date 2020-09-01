@@ -1,4 +1,6 @@
-.btn, .btn-secondary {
+.btn,
+.btn-secondary {
+    box-sizing: border-box;
     user-select: none;
     cursor: pointer;
     text-decoration: none;
