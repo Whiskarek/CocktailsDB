@@ -1,0 +1,84 @@
+.constructor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.constructor .btn {
+    margin-top: 10px;
+    width: 100px;
+}
+
+.constructor .coctail {
+    max-width: 600px;
+    margin-top: 10px;
+}
+
+.constructor .name {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    margin-left: 0;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid #232b55;
+    font-size: 20px;
+    font-family: 'Open Sans';
+    font-weight: 400;
+}
+
+.constructor .ingredient {
+    grid-template-areas: "icon name amt desc rm";
+    grid-template-columns: 36px auto auto 20px 20px;
+}
+
+.ingredient .ingredient-amt {
+    grid-area: amt;
+    display: flex;
+    justify-self: end;
+    text-align: right;
+    width: 50px;
+    border-radius: 5px;
+    border: 1px solid #232b55;
+    object-fit: cover;
+}
+
+.ingredient .ingredient-rm {
+    grid-area: rm;
+    background-color: #232b55;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    align-self: center;
+    margin-left: 10px;
+    user-select: none;
+}
+
+.coctail .text {
+    width: 100%;
+    resize: vertical;
+    min-height: 100px;
+    border-radius: 10px;
+    outline: none;
+    text-indent: 5px;
+}
+
+.ingredients .btn {
+    align-self: center;
+}
+
+.ingredient .ingredient-amt:focus,
+.name:focus {
+    outline: none;
+}
+
+@media screen and (max-width: 600px) {
+    .constructor .coctail {
+        grid-template-areas:
+            "logo"
+            "recipe"
+            "desc";
+    }
+}

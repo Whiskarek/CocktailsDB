@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Coctails DB</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="static/styles.css">
+    </head>
+    <body>
+        <div id="header">
+            <header>
+                <div class="header-left">
+                <h1 class="logo">Coctails DB</h1>
+                </div>
+                <div class="header-center">
+                <nav class="menu">
+                    <ul>
+                        <li><a href="/index.html" class="btn-text">Feed</a></li>
+                        <li><a href="/constructor.html" class="btn-text">Add Coctail</a></li>
+                    </ul>
+                </nav>
+                </div>
+                <div class="header-right">
+                <nav>
+                    <ul>
+                        <li>
+                            <a class="btn" href="/login.html">Sign In</a>
+                        </li>
+                        <li>
+                            <a class="btn-secondary" href="/login.html">Sign Up</a>
+                        </li>
+                    </ul>
+                </nav>
+                </div>
+            </header>
+        </div>
+        <div id="main-view">
+            <form class="constructor">
+                <article class="coctail">
+                    <section class="coctail-logo-view">
+                        <input type="text" class="name" placeholder="Coctail Name"/>
+                        <img class="img" src="/static/images/coctail_demo.png"/>
+                    </section>
+                    <section class="coctail-recipe-view">
+                        <h3>Recipe</h3>
+                        <div class="ingredients">
+                            <div class="ingredient">
+                                <img class="ingredient-icon" src="/static/images/ingredients/Vodka.png"/>
+                                <label class="ingredient-name">Vodka</label>
+                                <input type="number" class="ingredient-amt"/>
+                                <span class="ingredient-desc">ml</span>
+                                <a class="ingredient-rm">×</a>
+                            </div>
+                            <div class="ingredient">
+                                <img class="ingredient-icon" src="/static/images/ingredients/Liqueur.png"/>
+                                <label class="ingredient-name">Liqueur</label>
+                                <input type="number" class="ingredient-amt"/>
+                                <span class="ingredient-desc">ml</span>
+                                <a class="ingredient-rm">×</a>
+                            </div>
+                            <a class="btn">Add</a>
+                        </div>
+                    </section>
+                    <section class="coctail-desc-view">
+                        <h3>Description</h3>
+                        <textarea class="text area" placeholder="Enter your coctail description"></textarea>
+                    </section>
+                </article>
+                <button class="btn" type="submit">Publish</button>
+            </form>
+        </div>
+    </body>
+</html>
