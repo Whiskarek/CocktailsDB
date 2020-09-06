@@ -1,0 +1,215 @@
+.coctail-view {
+    white-space: nowrap;
+    margin-top: 20px;
+}
+
+.coctail-view .coctail-wrap {
+    display: inline-block;
+    width: 50%;
+    white-space: normal;
+    padding: 0 10px;
+}
+
+.coctail {
+    display: grid;
+    grid-template-areas:
+        "logo recipe"
+        "desc desc";
+    box-sizing: border-box;
+    width: auto;
+    max-width: 700px;
+    height: auto;
+    border-radius: 10px;
+    border: 3px solid #232b55;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.25);
+}
+
+.coctail .coctail-logo-view {
+    grid-area: logo;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5px;
+}
+
+.coctail-logo-view .name {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.coctail-logo-view .by {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.coctail-logo-view .img {
+    margin: 0;
+    width: 160px;
+    padding: 0 10px;
+    pointer-events: none;
+    user-select: none;
+    align-self: center;
+}
+
+.coctail-logo-view .rating {
+    align-self: center;
+    pointer-events: none;
+    user-select: none;
+}
+
+.coctail .coctail-recipe-view {
+    grid-area: recipe;
+    padding: 5px;
+}
+
+.coctail-recipe-view h3 {
+    margin: 0;
+    text-align: center;
+}
+
+.coctail-recipe-view .ingredients {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.coctail-recipe-view .ingredient {
+    display: grid;
+    grid-template-areas: "icon name desc";
+    grid-template-columns: 36px auto auto;
+    margin: 2px;
+    padding: 5px;
+}
+
+.ingredient .ingredient-icon {
+    grid-area: icon;
+    width: 36px;
+    align-content: center;
+}
+
+.ingredient .ingredient-name {
+    object-fit: cover;
+    grid-area: name;
+    text-align: left;
+    align-self: center;
+}
+
+.ingredient .ingredient-desc {
+    grid-area: desc;
+    object-fit: cover;
+    text-align: right;
+    align-self: center;
+}
+
+.coctail .coctail-desc-view {
+    grid-area: desc;
+    padding: 5px;
+}
+
+.coctail-desc-view h3 {
+    text-align: center;
+    margin: 0;
+}
+
+.coctail-desc-view p {
+    margin: 0;
+    padding-top: 5px;
+}
+
+.coctail-view .comments {
+    display: inline-block;
+    width: 50%;
+    white-space: normal;
+    padding: 0 10px;
+}
+
+.comments h2 {
+    text-align: center;
+}
+
+.comments .list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.comments .comment {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    align-items: center;
+    width: 100%;
+    max-width: 700px;
+    height: auto;
+    border-radius: 10px;
+    border: 3px solid #232b55;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.25);
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.comment .username {
+    margin: 0;
+    padding-top: 5px;
+    align-self: flex-start;
+}
+
+.comment .rating {
+    align-self: flex-end;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 5px;
+}
+
+.comment .area {
+    width: 100%;
+    min-height: 100px;
+    resize: vertical;
+    margin: 10px 0;
+}
+
+.area + .rating {
+    align-self: center;
+}
+
+.list > a {
+    margin-bottom: 10px;
+}
+
+.list > form {
+    display: flex;
+    width: 100%;
+}
+
+.list > form > .btn {
+    width: 170px;
+    margin-bottom: 10px;
+}
+
+@media screen and (max-width: 600px) {
+    .coctail-view {
+        white-space: normal;
+        margin-top: 20px;
+    }
+
+    .coctail-view .coctail-wrap {
+        width: auto;
+    }
+
+    .coctail-wrap .coctail {
+        grid-template-areas:
+            "logo"
+            "recipe"
+            "desc";
+    }
+
+    .coctail-view .comments {
+        width: auto;
+    }
+
+    .list a {
+        width: 100px;
+    }
+}

@@ -1,10 +1,12 @@
 .btn,
 .btn-secondary {
+    width: auto;
     box-sizing: border-box;
     user-select: none;
     cursor: pointer;
     text-decoration: none;
     text-transform: uppercase;
+    text-align: center;
     font-family: sans-serif;
     font-weight: 100;
     font-size: 1em;
@@ -63,6 +65,11 @@
     font-weight: lighter;
     font-size: 2em;
     color: white;
+    pointer-events: none;
+    user-select: none;
+}
+
+.noedit {
     pointer-events: none;
     user-select: none;
 }
