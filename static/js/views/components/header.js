@@ -23,8 +23,8 @@ export class Header extends Component {
         this._authorized = authorized;
     }
 
-    render() {
-        super.render();
+    onRender() {
+        super.onRender();
 
         let profile_nav = document.getElementById(Header.profileNavId);
         if (this._authorized) {
@@ -34,8 +34,8 @@ export class Header extends Component {
         }
     }
 
-    postRender() {
-        super.postRender();
+    onPostRender() {
+        super.onPostRender();
 
         let btnFeed = document.getElementById(Header.btnFeedId);
         let btnAddCocktail = document.getElementById(Header.btnAddCocktailId);

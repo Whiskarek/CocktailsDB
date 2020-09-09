@@ -22,11 +22,11 @@ export class View {
         return await response.text();
     }
 
-    render() {
+    onRender() {
 
     }
 
-    postRender() {
+    onPostRender() {
     }
 
     async view() {
