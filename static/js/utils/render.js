@@ -1,9 +1,9 @@
 const mainTitle = window.document.title;
 
-export async function render(document, view) {
-    document.innerHTML = await view.view();
-    view.onRender();
-    view.onPostRender();
+export async function render(element, view) {
+    await view.onPreRender(element);
+    await view.onRender(element);
+    await view.onPostRender(element);
     renderTitle(view);
 }
 

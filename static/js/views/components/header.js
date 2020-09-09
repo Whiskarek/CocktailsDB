@@ -2,10 +2,10 @@ import {Component} from './component.js';
 import {Router} from '../../router/router.js';
 
 export class Header extends Component {
-    static profileNavId = 'header-profile-nav';
-    static btnLoginId = 'btn-login';
-    static btnFeedId = 'btn-feed';
-    static btnAddCocktailId = 'btn-add-coctail';
+    static profileNavId = '#header-profile-nav';
+    static btnLoginId = '#btn-login';
+    static btnFeedId = '#btn-feed';
+    static btnAddCocktailId = '#btn-add-coctail';
 
     // TODO: Authorized view
     static viewAuthorized = `
@@ -23,10 +23,10 @@ export class Header extends Component {
         this._authorized = authorized;
     }
 
-    onRender() {
-        super.onRender();
+    async onRender(element) {
+        await super.onRender(element);
 
-        let profile_nav = document.getElementById(Header.profileNavId);
+        let profile_nav = element.querySelector(Header.profileNavId);
         if (this._authorized) {
             profile_nav.innerHTML = Header.viewAuthorized;
         } else {
@@ -34,11 +34,11 @@ export class Header extends Component {
         }
     }
 
-    onPostRender() {
-        super.onPostRender();
+    async onPostRender(element) {
+        await super.onPostRender(element);
 
-        let btnFeed = document.getElementById(Header.btnFeedId);
-        let btnAddCocktail = document.getElementById(Header.btnAddCocktailId);
+        let btnFeed = element.querySelector(Header.btnFeedId);
+        let btnAddCocktail = element.querySelector(Header.btnAddCocktailId);
 
         btnFeed.addEventListener('click', () => {
             Router.INSTANCE.loadPage('/');
@@ -50,7 +50,7 @@ export class Header extends Component {
         if (this._authorized) {
             // TODO
         } else {
-            let btnLogin = document.getElementById(Header.btnLoginId);
+            let btnLogin = element.querySelector(Header.btnLoginId);
 
             btnLogin.addEventListener('click', () => {
                 Router.INSTANCE.loadPage('/login');

@@ -24,10 +24,8 @@ export class Router {
 
     async loadPage(url) {
         history.pushState({}, "", url);
-        const header = document.getElementById('header');
-        const content = document.getElementById('content');
 
-        await render(header, new Header());
+        const content = document.getElementById('content');
 
         for (const {path, page} of this._routes) {
             if (path === url) {
@@ -45,6 +43,8 @@ export class Router {
     }
 
     async _load_initial_url() {
+        const header = document.getElementById('header');
+        await render(header, new Header());
         let url = window.location.pathname;
         await this.loadPage(url);
     }
