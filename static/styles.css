@@ -1,0 +1,12 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+/* Styles */
+@import url("styles/star.css");
+@import url("styles/controls.css");
+@import url("styles/header.css");
+@import url("styles/coctail_card.css");
+@import url("styles/feed.css");
+@import url("styles/login.css");
+@import url("styles/view.css");
+@import url("styles/constructor.css");

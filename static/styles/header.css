@@ -1,0 +1,59 @@
+body {
+    margin: 0;
+}
+
+header {
+    height: 50px;
+    display: grid;
+    grid-template-areas: "logo menu menu nav";
+    align-items: center;
+    padding-left: 12px;
+    padding-right: 12px;
+
+    background-color: #232b55;
+    border-radius: 0 0 15px 15px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.25);
+    user-select: none;
+}
+
+.header-left {
+    float: left;
+    grid-area: logo;
+}
+
+.header-right {
+    float: right !important;
+    grid-area: nav;
+}
+
+.header-right nav {
+    float: right !important;
+}
+
+.header-center {
+    grid-area: menu;
+}
+
+header ul {
+    margin: 0;
+    padding: 4px;
+}
+
+header ul li {
+    display: inline;
+    padding: 5px;
+}
+
+@media screen and (max-width: 600px) {
+    header {
+        height: auto;
+        grid-template-areas:
+            "logo nav"
+            "menu menu";
+    }
+
+    .header-center ul {
+        display: flex;
+        justify-content: space-evenly;
+    }
+}

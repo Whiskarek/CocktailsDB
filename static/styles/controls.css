@@ -1,0 +1,93 @@
+.btn,
+.btn-secondary {
+    width: auto;
+    box-sizing: border-box;
+    user-select: none;
+    cursor: pointer;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: center;
+    font-family: sans-serif;
+    font-weight: 100;
+    font-size: 1em;
+    border-radius: 25px;
+    border: 3px solid #1059FF;
+    color: white;
+    padding: 5px;
+}
+
+.btn {
+    background-color: #1059FF;
+}
+
+.btn:hover {
+    background-color: #1048C8;
+    border: 3px solid #1048C8;
+}
+
+.btn:active {
+    position: relative;
+    top: 1px;
+}
+
+.btn-secondary {
+    background-color: transparent;
+}
+
+.btn-secondary:hover {
+    border: 3px solid #1048C8;
+}
+
+.btn-secondary:active {
+    position: relative;
+    top: 1px;
+}
+
+.btn-text {
+    font-family: 'Open Sans';
+    font-weight: 400;
+    color: white;
+    text-decoration: none;
+    font-size: 1.5em;
+}
+
+.btn-text:hover {
+    color: rgb(220, 220, 240);
+}
+
+.btn-text:active {
+    color: rgb(200, 200, 220);
+}
+
+.logo {
+    margin: 0;
+    font-family: Arial;
+    font-weight: lighter;
+    font-size: 2em;
+    color: white;
+    pointer-events: none;
+    user-select: none;
+}
+
+.noedit {
+    pointer-events: none;
+    user-select: none;
+}
+
+@media screen and (max-width: 600px) {
+    .btn {
+        font-size: 0.4em;
+    }
+
+    .btn-secondary {
+        font-size: 0.4em;
+    }
+
+    .btn-text {
+        font-size: 0.8em;
+    }
+
+    .logo {
+        font-size: 1.5em;
+    }
+}
