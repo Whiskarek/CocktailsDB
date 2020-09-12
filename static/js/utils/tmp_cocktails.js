@@ -2,6 +2,7 @@ export const cocktails = [
     {
         id: 1,
         name: "Cocktail 1",
+        by: "by \"LolKek\"",
         desc: "Cocktail 1 description",
         rating: 4.5,
         ingredients: [
@@ -12,22 +13,26 @@ export const cocktails = [
             {
                 name: "Liqueur",
                 amount: "150"
+            },
+            {
+                name: "Beer",
+                amount: "500"
             }
         ],
         comments: [
             {
                 user: "username1",
-                comment: "Abacaba",
+                text: "Abacaba",
                 rating: 4
             },
             {
                 user: "username43",
-                comment: "Abakdfkkdfcaba",
+                text: "Abakdfkkdfcaba",
                 rating: 2
             },
             {
                 user: "username12",
-                comment: "Abacasdadaba",
+                text: "Abacasdadaba",
                 rating: 3
             },
         ]

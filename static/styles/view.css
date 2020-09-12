@@ -166,6 +166,10 @@
     align-self: flex-start;
 }
 
+.comment .text {
+    align-self: flex-start;
+}
+
 .comment .rating {
     align-self: flex-end;
     display: flex;
