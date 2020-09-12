@@ -46,4 +46,12 @@ export class CocktailCard extends Component {
     _renderRating(rating) {
         this.renderComponent(rating, this._rating).then(() => {});
     }
+
+    get cocktailName() {
+        return this._name;
+    }
+
+    get cocktailDescription() {
+        return this._desc;
+    }
 }
