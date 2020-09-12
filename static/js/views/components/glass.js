@@ -6,10 +6,13 @@ export class Glass extends Component {
     static contentClass = '.content';
     static defsTag = 'defs';
 
-    constructor(id, ingredients) {
-        super('glass');
+    constructor(id, ingredients, element) {
+        super('glass', element);
         this.id = id;
         this.ingredients = ingredients;
+        this._renderType = 1;
+
+        this.render().then();
     }
 
     async onRender(element) {
@@ -47,13 +50,20 @@ export class Glass extends Component {
         let step = 100 / capacity;
         let offset = 0;
 
-        this.ingredients.forEach((element) => {
+        this.ingredients.reverse().forEach((element) => {
             let stop = document.createElementNS(svgns, 'stop');
             stop.setAttribute('offset', Math.floor(offset) + "%");
             stop.setAttribute('stop-color', getColorFromString(element.name));
             gradient.appendChild(stop);
-            offset += step * (element.amount/100);
+            offset += step * (element.amount / 100);
         })
         element.innerHTML = gradient.outerHTML;
+    }
+
+    update(ingredients) {
+        this.ingredients = ingredients
+            .filter(item => item.valid())
+            .map(item => item.json);
+        this.render().then();
     }
 }

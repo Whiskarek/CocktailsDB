@@ -1,33 +1,19 @@
 <form class="constructor">
     <article class="coctail">
         <section class="coctail-logo-view">
-            <input type="text" class="name" placeholder="Coctail Name"/>
-            <img class="img" src="/static/images/coctail_demo.png"/>
+            <input id="name" type="text" class="name" placeholder="Coctail Name"/>
+            <div id="img" class="img"></div>
         </section>
         <section class="coctail-recipe-view">
             <h3>Recipe</h3>
             <div class="ingredients">
-                <div class="ingredient">
-                    <img class="ingredient-icon" src="/static/images/ingredients/Vodka.png"/>
-                    <label class="ingredient-name">Vodka</label>
-                    <input type="number" class="ingredient-amt"/>
-                    <span class="ingredient-desc">ml</span>
-                    <a class="ingredient-rm">×</a>
-                </div>
-                <div class="ingredient">
-                    <img class="ingredient-icon" src="/static/images/ingredients/Liqueur.png"/>
-                    <label class="ingredient-name">Liqueur</label>
-                    <input type="number" class="ingredient-amt"/>
-                    <span class="ingredient-desc">ml</span>
-                    <a class="ingredient-rm">×</a>
-                </div>
-                <a class="btn">Add</a>
+                <a id="btn-add-ingredient" class="btn">Add</a>
             </div>
         </section>
         <section class="coctail-desc-view">
             <h3>Description</h3>
-            <textarea class="text area" placeholder="Enter your coctail description"></textarea>
+            <textarea id="desc" class="text area" placeholder="Enter your coctail description"></textarea>
         </section>
     </article>
-    <button class="btn" type="submit">Publish</button>
+    <button id="btn-publish" class="btn">Publish</button>
 </form>

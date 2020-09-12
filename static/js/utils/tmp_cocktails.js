@@ -1,4 +1,4 @@
-export const cocktails = [
+export let cocktails = [
     {
         id: 1,
         name: "Cocktail 1",
@@ -16,7 +16,7 @@ export const cocktails = [
             },
             {
                 name: "Beer",
-                amount: 20
+                amount: 50
             }
         ],
         comments: [

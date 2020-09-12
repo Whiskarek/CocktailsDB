@@ -54,11 +54,7 @@ export class View extends Page {
         await this._renderIngredients(ingredientsContainer);
 
         let img = element.querySelector(View.imgId);
-        await this._renderImg(img);
-    }
-
-    async _renderImg(container) {
-        await this.renderComponent(container, new Glass(this.id, this.ingredients));
+        new Glass(this.id, this.ingredients, img);
     }
 
     async _renderComments(container) {
@@ -69,7 +65,7 @@ export class View extends Page {
 
     async _renderIngredients(container) {
         for (let i = 0; i < this.ingredients.length; ++i) {
-            await this.renderComponent(container, new Ingredient(i, this.ingredients[i].name, this.ingredients[i].amount));
+            new Ingredient(container, i, false, this.ingredients[i].name, this.ingredients[i].amount);
         }
     }
 
@@ -77,6 +73,7 @@ export class View extends Page {
         let cocktail = cocktails[0];
         this.id = cocktail.id;
         this.name = cocktail.name;
+        this._viewDisplayedName = this.name;
         this.by = cocktail.by;
         this.img = cocktail.img;
         this.desc = cocktail.desc;

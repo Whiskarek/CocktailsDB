@@ -3,6 +3,8 @@ import {render} from '../utils/render.js';
 export class View {
     static PAGE = 0;
     static COMPONENT = 1;
+    static MANY = 0;
+    static ONE = 1;
     static basePath = '/static/views/';
     static basePagePath = View.basePath + 'pages/';
     static baseComponentPath = View.basePath + 'components/';
@@ -11,6 +13,7 @@ export class View {
         this._viewName = name;
         this._viewDisplayedName = displayedName;
         this._viewType = viewType;
+        this._renderType = View.MANY;
         this._viewPath = null;
         this._view = null;
     }
@@ -32,7 +35,11 @@ export class View {
 
     async onRender(element) {
         if (this._viewType === View.COMPONENT) {
-            element.insertAdjacentHTML('beforeend', await this.view());
+            if (this._renderType === View.MANY) {
+                element.insertAdjacentHTML('beforeend', await this.view());
+            } else {
+                element.innerHTML = await this.view();
+            }
         } else {
             element.innerHTML = await this.view();
         }

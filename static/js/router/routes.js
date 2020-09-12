@@ -6,7 +6,7 @@ import {Login} from '../views/pages/login.js';
 export const routes = [
     {
         path: '/',
-        page: View,
+        page: Feed,
     },
     {
         path: '/cocktail/:id',
