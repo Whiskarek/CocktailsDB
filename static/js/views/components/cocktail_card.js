@@ -1,6 +1,7 @@
 import {Component} from './component.js';
 import {Rating} from './rating.js';
 import {Router} from '../../router/router.js';
+import {Glass} from './glass.js';
 
 export class CocktailCard extends Component {
     static CardClass = '.coctail-card:not([id])';
@@ -15,6 +16,7 @@ export class CocktailCard extends Component {
         this._name = data.name;
         this._desc = data.desc;
         this._rating = new Rating(false, data.rating);
+        this._ingredients = data.ingredients;
     }
 
     async onRender(element) {
@@ -41,6 +43,8 @@ export class CocktailCard extends Component {
         desc.innerText = this._desc;
         let rating = element.querySelector(CocktailCard.RatingClass);
         this._renderRating(rating)
+        let icon = element.querySelector(CocktailCard.ImageClass);
+        new Glass(this._id, this._ingredients, icon);
     }
 
     _renderRating(rating) {

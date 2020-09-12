@@ -9,7 +9,7 @@ export class Glass extends Component {
     constructor(id, ingredients, element) {
         super('glass', element);
         this.id = id;
-        this.ingredients = ingredients;
+        this.ingredients = ingredients || [];
         this._renderType = 1;
 
         this.render().then();
@@ -65,5 +65,10 @@ export class Glass extends Component {
             .filter(item => item.valid())
             .map(item => item.json);
         this.render().then();
+    }
+
+    get base64() {
+        let text = this._element.outerHTML;
+        return window.btoa(text);
     }
 }
