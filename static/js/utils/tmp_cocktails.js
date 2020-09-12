@@ -1,21 +1,21 @@
 export let cocktails = [
     {
-        id: 1,
+        id: 0,
         name: "Cocktail 1",
         by: "by \"LolKek\"",
         desc: "Cocktail 1 description",
         rating: 4.5,
         ingredients: [
             {
-                name: "Vodka",
+                name: "vodka",
                 amount: 50
             },
             {
-                name: "Liqueur",
+                name: "liqueur",
                 amount: 150
             },
             {
-                name: "Beer",
+                name: "beer",
                 amount: 50
             }
         ],
@@ -36,23 +36,5 @@ export let cocktails = [
                 rating: 3
             },
         ]
-    },
-    {
-        id: 2,
-        name: "Cocktail 2",
-        desc: "Cocktail 2 description",
-        rating: 3
-    },
-    {
-        id: 3,
-        name: "Cocktail 3",
-        desc: "Cocktail 3 description",
-        rating: 1
-    },
-    {
-        id: 4,
-        name: "Cocktail 4",
-        desc: "Cocktail 4 description",
-        rating: 5
     },
 ];

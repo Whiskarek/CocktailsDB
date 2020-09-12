@@ -50,7 +50,7 @@ export class Glass extends Component {
         let step = 100 / capacity;
         let offset = 0;
 
-        this.ingredients.reverse().forEach((element) => {
+        this.ingredients.slice().reverse().forEach((element) => {
             let stop = document.createElementNS(svgns, 'stop');
             stop.setAttribute('offset', Math.floor(offset) + "%");
             stop.setAttribute('stop-color', getColorFromString(element.name));
@@ -65,10 +65,5 @@ export class Glass extends Component {
             .filter(item => item.valid())
             .map(item => item.json);
         this.render().then();
-    }
-
-    get base64() {
-        let text = this._element.outerHTML;
-        return window.btoa(text);
     }
 }
