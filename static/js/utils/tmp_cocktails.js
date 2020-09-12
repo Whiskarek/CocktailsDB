@@ -8,15 +8,15 @@ export const cocktails = [
         ingredients: [
             {
                 name: "Vodka",
-                amount: "50"
+                amount: 50
             },
             {
                 name: "Liqueur",
-                amount: "150"
+                amount: 150
             },
             {
                 name: "Beer",
-                amount: "500"
+                amount: 20
             }
         ],
         comments: [

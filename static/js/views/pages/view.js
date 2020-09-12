@@ -3,6 +3,7 @@ import {cocktails} from '../../utils/tmp_cocktails.js';
 import {Rating} from '../components/rating.js';
 import {Comment} from '../components/comment.js';
 import {Ingredient} from '../components/ingredient.js';
+import {Glass} from '../components/glass.js';
 
 export class View extends Page {
     static nameId = '#name';
@@ -51,6 +52,13 @@ export class View extends Page {
 
         let ingredientsContainer = element.querySelector(View.ingredientsId);
         await this._renderIngredients(ingredientsContainer);
+
+        let img = element.querySelector(View.imgId);
+        await this._renderImg(img);
+    }
+
+    async _renderImg(container) {
+        await this.renderComponent(container, new Glass(this.id, this.ingredients));
     }
 
     async _renderComments(container) {
@@ -67,6 +75,7 @@ export class View extends Page {
 
     async _loadCocktail() {
         let cocktail = cocktails[0];
+        this.id = cocktail.id;
         this.name = cocktail.name;
         this.by = cocktail.by;
         this.img = cocktail.img;
