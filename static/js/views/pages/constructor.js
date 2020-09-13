@@ -30,7 +30,7 @@ export class Constructor extends Page {
 
         this.form = element.querySelector('form');
         this.form.addEventListener('submit', this._submit);
-        this.ingredientsListForm = element.querySelector('.ingredients');
+        this.ingredientsListForm = element.querySelector('#ingrs');
         this.btnAddIngredient = element.querySelector(Constructor.btnAddIngredientId);
         this.btnAddIngredient.addEventListener('click', this._addIngredient);
     }
