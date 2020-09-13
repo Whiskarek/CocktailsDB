@@ -16,7 +16,7 @@
         "logo recipe"
         "desc desc";
     box-sizing: border-box;
-    width: auto;
+    width: 100%;
     max-width: 700px;
     height: auto;
     border-radius: 10px;
@@ -42,6 +42,7 @@
     margin: 0;
     padding: 0;
     text-align: center;
+    margin-bottom: 10px;
 }
 
 .coctail-logo-view .img {
@@ -213,7 +214,7 @@
     }
 
     .coctail-view .coctail-wrap {
-        width: auto;
+        width: 100%;
     }
 
     .coctail-wrap .coctail {
@@ -224,7 +225,7 @@
     }
 
     .coctail-view .comments {
-        width: auto;
+        width: 100%;
     }
 
     .list a {
