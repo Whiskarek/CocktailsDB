@@ -34,8 +34,8 @@ export class Glass extends Component {
     }
 
     _createGradient(element) {
-        const svgns = 'http://www.w3.org/2000/svg';
-        let gradient = document.createElementNS(svgns, 'linearGradient');
+        const svgNs = 'http://www.w3.org/2000/svg';
+        let gradient = document.createElementNS(svgNs, 'linearGradient');
         gradient.id = 'gradient-' + this.id.toString();
         gradient.setAttribute('x1', '0');
         gradient.setAttribute('x2', '0');
@@ -51,7 +51,7 @@ export class Glass extends Component {
         let offset = 0;
 
         this.ingredients.slice().reverse().forEach((element) => {
-            let stop = document.createElementNS(svgns, 'stop');
+            let stop = document.createElementNS(svgNs, 'stop');
             stop.setAttribute('offset', Math.floor(offset) + "%");
             stop.setAttribute('stop-color', ingredients[element.name].color);
             gradient.appendChild(stop);
