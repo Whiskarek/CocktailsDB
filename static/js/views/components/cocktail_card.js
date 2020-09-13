@@ -41,7 +41,7 @@ export class CocktailCard extends Component {
         let desc = element.querySelector(CocktailCard.DescClass);
         desc.innerText = this._desc;
         let rating = element.querySelector(CocktailCard.RatingClass);
-        this._rating = new Rating(rating, false, this._rating);
+        new Rating(rating, false, this._rating);
         let icon = element.querySelector(CocktailCard.ImageClass);
         new Glass(this._id, this._ingredients, icon);
     }

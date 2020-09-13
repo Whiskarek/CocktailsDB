@@ -4,7 +4,7 @@ export let cocktails = [
         name: "Cocktail 1",
         by: "by \"LolKek\"",
         desc: "Cocktail 1 description",
-        rating: 4.5,
+        rating: 3,
         ingredients: [
             {
                 name: "vodka",
