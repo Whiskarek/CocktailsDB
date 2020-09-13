@@ -1,5 +1,5 @@
 import {Component} from './component.js';
-import {getColorFromString} from '../../utils/strings.js';
+import {ingredients} from '../../ingredients.js';
 
 export class Glass extends Component {
     static glassClass = '.cocktail-glass:not([id])';
@@ -53,7 +53,7 @@ export class Glass extends Component {
         this.ingredients.slice().reverse().forEach((element) => {
             let stop = document.createElementNS(svgns, 'stop');
             stop.setAttribute('offset', Math.floor(offset) + "%");
-            stop.setAttribute('stop-color', getColorFromString(element.name));
+            stop.setAttribute('stop-color', ingredients[element.name].color);
             gradient.appendChild(stop);
             offset += step * (element.amount / 100);
         })
