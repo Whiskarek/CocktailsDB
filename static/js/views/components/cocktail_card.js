@@ -30,8 +30,7 @@ export class CocktailCard extends Component {
         await super.onPostRender(element);
 
         this._element.addEventListener('click', () => {
-            // Router.INSTANCE.loadPage(`/cocktail/${this._id.toString()}`);
-            Router.INSTANCE.loadPage(`/cocktail/:id`);
+            Router.INSTANCE.navigate(`/cocktail/${this._id.toString()}`);
         });
     }
 

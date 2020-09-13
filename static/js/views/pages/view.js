@@ -19,9 +19,9 @@ export class View extends Page {
         <a id="add-comment" class="btn">Add Comment</a>
     `;
 
-    constructor(cocktail_id) {
+    constructor(request) {
         super('view', 'View');
-        this.id = cocktail_id;
+        this.id = request.id;
     }
 
     async onPreRender(element) {
@@ -78,7 +78,7 @@ export class View extends Page {
     }
 
     async _loadCocktail() {
-        let cocktail = cocktails[0];
+        let cocktail = cocktails[this.id];
         this.id = cocktail.id;
         this.name = cocktail.name;
         this._viewDisplayedName = this.name;

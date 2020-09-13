@@ -50,7 +50,7 @@ export class Constructor extends Page {
             ingredients: this.ingredientsList.map(i => i.json),
             comments: []
         }
-        Router.INSTANCE.loadPage(`/`);
+        Router.INSTANCE.navigate(`/`);
     }
 
     _checkFieldsPresence() {

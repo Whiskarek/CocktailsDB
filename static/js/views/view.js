@@ -48,6 +48,9 @@ export class View {
     async onPostRender(element) {
     }
 
+    onDestroy() {
+    }
+
     async view() {
         if (this._view === null) {
             this._view = await this._load();

@@ -18,9 +18,12 @@ export class Header extends Component {
     </nav>
     `;
 
-    constructor(authorized) {
-        super('header');
-        this._authorized = authorized;
+    constructor(container) {
+        super('header', container);
+        this._authorized = false;
+
+        this._renderType = 1;
+        this.render();
     }
 
     async onRender(element) {
@@ -41,10 +44,10 @@ export class Header extends Component {
         let btnAddCocktail = element.querySelector(Header.btnAddCocktailId);
 
         btnFeed.addEventListener('click', () => {
-            Router.INSTANCE.loadPage('/');
+            Router.INSTANCE.navigate('/');
         });
         btnAddCocktail.addEventListener('click', () => {
-            Router.INSTANCE.loadPage('/add');
+            Router.INSTANCE.navigate('/add');
         });
 
         if (this._authorized) {
@@ -53,7 +56,7 @@ export class Header extends Component {
             let btnLogin = element.querySelector(Header.btnLoginId);
 
             btnLogin.addEventListener('click', () => {
-                Router.INSTANCE.loadPage('/login');
+                Router.INSTANCE.navigate('/login');
             });
         }
     }
