@@ -9,6 +9,24 @@
     <body>
         <div id="header"></div>
         <div id="content"></div>
+        <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-auth.js"></script>
+        <script>
+            {
+                // Your web app's Firebase configuration
+                let firebaseConfig = {
+                    apiKey: "AIzaSyDgO-EHi-mORmhpmK9U9HA0hgJE4prW0Kw",
+                    authDomain: "cocktailsdb-6de3b.firebaseapp.com",
+                    databaseURL: "https://cocktailsdb-6de3b.firebaseio.com",
+                    projectId: "cocktailsdb-6de3b",
+                    storageBucket: "cocktailsdb-6de3b.appspot.com",
+                    messagingSenderId: "302404259509",
+                    appId: "1:302404259509:web:cfed8d25a5725783e338fc"
+                };
+                // Initialize Firebase
+                firebase.initializeApp(firebaseConfig);
+            }
+        </script>
         <script type="module" src="/static/js/app.js"></script>
     </body>
 </html>

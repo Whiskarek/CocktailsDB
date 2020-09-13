@@ -15,6 +15,7 @@ export const routes = [
     {
         path: '/add',
         page: Constructor,
+        require_auth: true
     },
     {
         path: '/login',

@@ -28,6 +28,7 @@ export class View extends Page {
         await super.onPreRender(element);
 
         await this._loadCocktail();
+        this.authernicated = !!firebase.auth().currentUser;
     }
 
     async onRender(element) {
@@ -39,8 +40,12 @@ export class View extends Page {
     async onPostRender(element) {
         await super.onPostRender(element);
 
-        this.btnAddComment = element.querySelector('#add-comment');
-        this.btnAddComment.addEventListener('click', this._addComment);
+        if (this.authernicated) {
+            let list = element.querySelector('.list');
+            list.insertAdjacentHTML('beforeend', View.btnAddCommentHtml);
+            this.btnAddComment = element.querySelector('#add-comment');
+            this.btnAddComment.addEventListener('click', this._addComment);
+        }
     }
 
     async _renderData(element) {

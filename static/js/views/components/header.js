@@ -4,12 +4,15 @@ import {Router} from '../../router/router.js';
 export class Header extends Component {
     static profileNavId = '#header-profile-nav';
     static btnLoginId = '#btn-login';
+    static btnLogoutId = '#btn-logout';
     static btnFeedId = '#btn-feed';
     static btnAddCocktailId = '#btn-add-coctail';
 
-    // TODO: Authorized view
     static viewAuthorized = `
-    
+    <nav>
+        <span id="username" class="login noedit"></span>
+        <a id="btn-logout" class="btn-secondary">Log Out</a>
+    </nav>
     `;
 
     static viewNotAuthorized = `
@@ -23,7 +26,16 @@ export class Header extends Component {
         this._authorized = false;
 
         this._renderType = 1;
-        this.render();
+    }
+
+    async onPreRender(element) {
+        await super.onPreRender(element);
+
+        let user = firebase.auth().currentUser;
+        this._authorized = !!user;
+        if (this._authorized) {
+            this._username = user.displayName;
+        }
     }
 
     async onRender(element) {
@@ -32,6 +44,8 @@ export class Header extends Component {
         let profile_nav = element.querySelector(Header.profileNavId);
         if (this._authorized) {
             profile_nav.innerHTML = Header.viewAuthorized;
+            let username = element.querySelector('#username');
+            username.innerText = this._username;
         } else {
             profile_nav.innerHTML = Header.viewNotAuthorized;
         }
@@ -51,7 +65,13 @@ export class Header extends Component {
         });
 
         if (this._authorized) {
-            // TODO
+            let btnLogout = element.querySelector(Header.btnLogoutId);
+
+            btnLogout.addEventListener('click', () => {
+                firebase.auth().signOut().then(() => {
+                    Router.INSTANCE.navigate('/');
+                });
+            });
         } else {
             let btnLogin = element.querySelector(Header.btnLoginId);
 

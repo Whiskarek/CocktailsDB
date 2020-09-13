@@ -23,6 +23,9 @@ export class Router {
         const router = new Router(routes);
         await router._load_initial_url();
         Router.INSTANCE = router;
+        firebase.auth().onAuthStateChanged(function(user) {
+            router.header.render();
+        });
         return Router.INSTANCE;
     }
 
@@ -38,8 +41,15 @@ export class Router {
     async loadPage(url, request) {
         this.header.render().then();
         this._current_page = Feed;
-        for (const {path, page} of this._routes) {
+        for (const {path, page, require_auth} of this._routes) {
             if (path === url) {
+                if (require_auth) {
+                    let user = firebase.auth().currentUser;
+                    if (!user) {
+                        await this.loadPage('/login');
+                        return;
+                    }
+                }
                 this._current_page = page;
                 break;
             }

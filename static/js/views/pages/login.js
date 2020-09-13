@@ -1,6 +1,7 @@
 import {Page} from './page.js';
-import {md5} from '../../utils/strings.js';
+import {checkEmail} from '../../utils/strings.js';
 import {generateError, removeValidation} from '../../validator.js';
+import {Router} from '../../router/router.js';
 
 export class Login extends Page {
 
@@ -13,12 +14,13 @@ export class Login extends Page {
 
         this.signInHtml = element.querySelector('.sign-in-htm');
         this.btnSignIn = element.querySelector('#btn-sign-in');
-        this.userSignIn = element.querySelector('#sign-in-user');
+        this.emailSignIn = element.querySelector('#sign-in-email');
         this.passSignIn = element.querySelector('#sign-in-pass');
 
         this.signUpHtml = element.querySelector('.sign-up-htm');
         this.btnSignUp = element.querySelector('#btn-sign-up');
         this.userSignUp = element.querySelector('#sign-up-user');
+        this.emailSignUp = element.querySelector('#sign-up-email');
         this.passSignUp = element.querySelector('#sign-up-pass');
         this.passRepSignUp = element.querySelector('#sign-up-pass-rep');
     }
@@ -34,8 +36,8 @@ export class Login extends Page {
         removeValidation(this.signInHtml);
         let status = true;
 
-        if (!this.userSignIn.value) {
-            generateError(this.userSignIn);
+        if (!this.emailSignIn.value || !checkEmail(this.emailSignIn.value)) {
+            generateError(this.emailSignIn);
             status = false;
         }
 
@@ -52,6 +54,11 @@ export class Login extends Page {
 
         if (!this.userSignUp.value) {
             generateError(this.userSignUp);
+            status = false;
+        }
+
+        if (!this.emailSignUp.value || !checkEmail(this.emailSignUp.value)) {
+            generateError(this.emailSignUp);
             status = false;
         }
 
@@ -79,7 +86,11 @@ export class Login extends Page {
         if (!this.validateSignIn()) {
             return;
         }
-        // TODO: Sign In
+        let email = this.emailSignIn.value;
+        let password = this.passSignIn.value;
+        firebase.auth().signInWithEmailAndPassword(email, password)
+            .then(() => Router.INSTANCE.navigate('/'))
+            .catch((error) => alert(error));
     }
 
     _signUp = (event) => {
@@ -87,6 +98,18 @@ export class Login extends Page {
         if (!this.validateSignUp()) {
             return;
         }
-        // TODO: Sign Up
+        let username = this.userSignUp.value;
+        let email = this.emailSignUp.value;
+        let password = this.passSignUp.value;
+        firebase.auth().createUserWithEmailAndPassword(email, password)
+            .then(result => {
+                return result.user.updateProfile({
+                    displayName: username
+                }).then(() => {
+                    Router.INSTANCE.navigate('/');
+                });
+            }).catch(error => {
+            alert(error);
+        });
     }
 }

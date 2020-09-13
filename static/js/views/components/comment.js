@@ -27,8 +27,7 @@ export class Comment extends Component {
         await super.onPreRender(element);
 
         if (this.editable) {
-            // TODO: load username
-            this.user = 'admin';
+            this.user = firebase.auth().currentUser.displayName;
             this.rating = 0;
         }
     }

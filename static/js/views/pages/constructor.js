@@ -16,6 +16,12 @@ export class Constructor extends Page {
         this.ingredientsList = [];
     }
 
+    async onPreRender(element) {
+        await super.onPreRender(element);
+
+        this.by = firebase.auth().currentUser.displayName;
+    }
+
     async onRender(element) {
         await super.onRender(element);
 
@@ -44,7 +50,7 @@ export class Constructor extends Page {
         cocktails[newId] = {
             id: newId,
             name: this.name.value,
-            by: "by \"admin\"",
+            by: `by ${this.by}`,
             desc: this.desc.value,
             rating: 0,
             ingredients: this.ingredientsList.map(i => i.json),
