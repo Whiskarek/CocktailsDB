@@ -1,9 +1,10 @@
 import {Page} from './page.js';
-import {cocktails} from '../../utils/tmp_cocktails.js';
 import {Rating} from '../components/rating.js';
 import {Comment} from '../components/comment.js';
 import {Ingredient} from '../components/ingredient.js';
 import {Glass} from '../components/glass.js';
+import {Router} from '../../router/router.js';
+import {insertIdInObj} from '../../utils/map.js';
 
 export class View extends Page {
     static nameId = '#name';
@@ -34,6 +35,7 @@ export class View extends Page {
     async onRender(element) {
         await super.onRender(element);
 
+        this._element = element;
         await this._renderData(element)
     }
 
@@ -83,33 +85,45 @@ export class View extends Page {
     }
 
     async _loadCocktail() {
-        let cocktail = cocktails[this.id];
-        this.id = cocktail.id;
-        this.name = cocktail.name;
-        this._viewDisplayedName = this.name;
-        this.by = cocktail.by;
-        this.desc = cocktail.desc;
-        this.rating = cocktail.rating;
-        this.ingredients = cocktail.ingredients;
-        this.comments = cocktail.comments;
+        const snapshot = await firebase.database().ref('/cocktails/' + this.id).once('value');
+        if (snapshot.exists()) {
+            let cocktail = snapshot.val();
+            this.name = cocktail.name;
+            this._viewDisplayedName = this.name;
+            this.by = cocktail.by;
+            this.desc = cocktail.desc;
+            this.rating = cocktail.rating;
+            this.ingredients = cocktail.ingredients;
+            this.comments = cocktail.comments || [];
+            this.comments = insertIdInObj(this.comments);
+            console.log(this.comments);
+        } else {
+            Router.INSTANCE.navigate('/')
+        }
     }
 
     _addComment = () => {
         let comment = new Comment(this.commentsContainer, this.comments.length, true);
         comment.setOnPublishListener(() => {
-            this._insertComment(comment.json);
+            this._insertComment(comment.json).then();
             this.btnAddComment.style.display = '';
         });
         this.btnAddComment.style.display = 'none';
     }
 
-    _insertComment(comment) {
-        cocktails[this.id].comments.push(comment);
-        cocktails[this.id].rating =
-            cocktails[this.id].comments
-                .map(c => c.rating)
-                .reduce((a, b) => a + b, 0) / cocktails[this.id].comments.length;
-        this.ratingField.rating = cocktails[this.id].rating;
+    async _insertComment(comment) {
+        let refComments = firebase.database().ref("cocktails/" + this.id + "/comments");
+        let refCocktail = firebase.database().ref("cocktails/" + this.id);
+        refComments.push(comment);
+        const snapshot = await refComments.once("value");
+        const comments = Object.values(snapshot.val());
+        this.comments = comments;
+        const ratings = comments.map((comment) => {
+            return comment.rating
+        });
+        let rating = ratings.reduce((a, b) => a + b, 0) / comments.length;
+        await refCocktail.update({rating: rating});
+        this.ratingField.rating = rating;
         this._renderComments(this.commentsContainer).then();
     }
 }

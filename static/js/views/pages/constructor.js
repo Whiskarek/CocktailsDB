@@ -2,7 +2,6 @@ import {Page} from './page.js';
 import {Glass} from '../components/glass.js';
 import {Ingredient} from '../components/ingredient.js';
 import {generateError, removeValidation} from '../../validator.js';
-import {cocktails} from '../../utils/tmp_cocktails.js';
 import {Router} from '../../router/router.js';
 
 export class Constructor extends Page {
@@ -46,16 +45,16 @@ export class Constructor extends Page {
         if (!this._prePublishChecks()) {
             return;
         }
-        let newId = cocktails.length;
-        cocktails[newId] = {
-            id: newId,
+
+        let ref = firebase.database().ref("cocktails/");
+        ref.push({
             name: this.name.value,
-            by: `by ${this.by}`,
+            by: `by "${this.by}"`,
             desc: this.desc.value,
             rating: 0,
             ingredients: this.ingredientsList.map(i => i.json),
             comments: []
-        }
+        });
         Router.INSTANCE.navigate(`/`);
     }
 

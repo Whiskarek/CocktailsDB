@@ -1,6 +1,6 @@
 import {Page} from './page.js';
 import {CocktailCard} from '../components/cocktail_card.js';
-import {cocktails} from '../../utils/tmp_cocktails.js';
+import {insertIdInObj} from '../../utils/map.js';
 
 export class Feed extends Page {
     static cardContainerId = '#card-container';
@@ -13,7 +13,7 @@ export class Feed extends Page {
     async onPreRender(element) {
         await super.onPreRender(element);
 
-        this._all_cards = this._getCards();
+        this._all_cards = await this._getCards();
         this._cards = this._all_cards.slice();
     }
 
@@ -42,8 +42,14 @@ export class Feed extends Page {
         this._renderCards().then();
     }
 
-    _getCards() {
-        return cocktails.map((item) => new CocktailCard(item));
+    async _getCards() {
+        const snapshot = await firebase.database().ref('/cocktails').once('value');
+        if (snapshot.exists()) {
+            const data = snapshot.val();
+            return insertIdInObj(data)
+                .map(data => new CocktailCard(data));
+        }
+        return [];
     }
 
     _search = () => {

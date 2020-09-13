@@ -17,6 +17,10 @@ export class CocktailCard extends Component {
         this._desc = data.desc;
         this._rating = data.rating;
         this._ingredients = data.ingredients;
+
+        if (this._desc.length > 200) {
+            this._desc = this._desc.substring(0, 200) + '...';
+        }
     }
 
     async onRender(element) {

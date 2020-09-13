@@ -19,6 +19,16 @@ export const ingredients = {
         "img_path": "/static/images/ingredients/Gin.png",
         "color": '#E8F2EB',
     },
+    "ice": {
+        "name": "Ice",
+        "img_path": "/static/images/ingredients/Ice.png",
+        "color": '#2389FF',
+    },
+    "lemon": {
+        "name": "Lemon",
+        "img_path": "/static/images/ingredients/Lemon.png",
+        "color": '#FFFF00',
+    },
     "liqueur": {
         "name": "Liqueur",
         "img_path": "/static/images/ingredients/Liqueur.png",

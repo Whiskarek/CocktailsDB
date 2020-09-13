@@ -89,6 +89,7 @@
 .ingredient .ingredient-icon {
     grid-area: icon;
     width: 36px;
+    padding-right: 10px;
     align-content: center;
 }
 
