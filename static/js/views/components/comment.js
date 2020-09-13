@@ -76,7 +76,9 @@ export class Comment extends Component {
 
     _submit = (event) => {
         event.preventDefault();
-        this.validate();
+        if (!this.validate()) {
+            return;
+        }
         if (this.onPublishListener) {
             this.onPublishListener();
         }

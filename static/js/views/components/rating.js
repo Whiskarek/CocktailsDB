@@ -47,7 +47,7 @@ export class Rating extends Component {
         if (!this._editable) {
             div.classList.add('noedit');
         }
-        div.setAttribute('data-stars', Math.floor(this._rating).toString());
+        div.setAttribute('data-stars', Math.round(this._rating).toString());
         for (let i = 0; i < 5; i++) {
             div.insertAdjacentHTML('beforeend', Rating.star(i + 1));
         }
