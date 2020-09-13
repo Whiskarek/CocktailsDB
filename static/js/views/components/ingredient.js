@@ -46,12 +46,11 @@ export class Ingredient extends Component {
     }
 
     _renderData(element) {
-        const iconsPath = '/static/images/ingredients/';
         let name = element.querySelector('.ingredient-name');
-        name.innerText = this.name;
+        name.innerText = ingredients[this.name].name;
         let desc = element.querySelector('.ingredient-desc');
         desc.innerText = this.amount.toString() + ' ml';
-        this.icon.src = iconsPath + this.name + '.png';
+        this.icon.src = ingredients[this.name].img_path;
     }
 
     _renderEditableData(element) {
