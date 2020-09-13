@@ -25,7 +25,7 @@
     text-indent: 25px;
     border-radius: 5px;
     border: 2px solid #232b55;
-    background-image: url('/public/static/static/images/search.svg');
+    background-image: url('/static/images/search.svg');
     background-repeat: no-repeat;
 }
 
