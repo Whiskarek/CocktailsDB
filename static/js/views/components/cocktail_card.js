@@ -15,7 +15,7 @@ export class CocktailCard extends Component {
         this._id = data.id;
         this._name = data.name;
         this._desc = data.desc;
-        this._rating = new Rating(false, data.rating);
+        this._rating = data.rating;
         this._ingredients = data.ingredients;
     }
 
@@ -42,13 +42,9 @@ export class CocktailCard extends Component {
         let desc = element.querySelector(CocktailCard.DescClass);
         desc.innerText = this._desc;
         let rating = element.querySelector(CocktailCard.RatingClass);
-        this._renderRating(rating)
+        this._rating = new Rating(rating, false, this._rating);
         let icon = element.querySelector(CocktailCard.ImageClass);
         new Glass(this._id, this._ingredients, icon);
-    }
-
-    _renderRating(rating) {
-        this.renderComponent(rating, this._rating).then(() => {});
     }
 
     get cocktailName() {

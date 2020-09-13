@@ -106,6 +106,5 @@ export class View extends Page {
                 .reduce((a, b) => a + b, 0) / cocktails[this.id].comments.length;
         this.ratingField.rating = cocktails[this.id].rating;
         this._renderComments(this.commentsContainer).then();
-
     }
 }

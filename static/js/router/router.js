@@ -1,5 +1,6 @@
 import {Header} from '../views/components/header.js';
 import {render} from '../utils/render.js';
+import {Feed} from '../views/pages/feed.js';
 
 export class Router {
     static INSTANCE = null;
@@ -27,12 +28,14 @@ export class Router {
 
         const content = document.getElementById('content');
 
+        this._current_page = Feed;
         for (const {path, page} of this._routes) {
             if (path === url) {
-                this._current_page = new page;
+                this._current_page = page;
                 break;
             }
         }
+        this._current_page = new this._current_page;
 
         await render(content, this._current_page)
     }

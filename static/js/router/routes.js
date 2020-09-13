@@ -19,9 +19,5 @@ export const routes = [
     {
         path: '/login',
         page: Login,
-    },
-    {
-        path: '/error',
-        page: Login // TODO: Error page
     }
 ];
