@@ -13,9 +13,9 @@ export class View extends Page {
     static descId = '#desc';
     static ingredientsId = '#ingredients';
 
-    static commentsContainer = '#comments';
+    static commentsContainerId = '#comments';
 
-    static btnAddComment = `
+    static btnAddCommentHtml = `
         <a id="add-comment" class="btn">Add Comment</a>
     `;
 
@@ -36,6 +36,13 @@ export class View extends Page {
         await this._renderData(element)
     }
 
+    async onPostRender(element) {
+        await super.onPostRender(element);
+
+        this.btnAddComment = element.querySelector('#add-comment');
+        this.btnAddComment.addEventListener('click', this._addComment);
+    }
+
     async _renderData(element) {
         let name = element.querySelector(View.nameId);
         name.innerText = this.name;
@@ -44,11 +51,10 @@ export class View extends Page {
         let desc = element.querySelector(View.descId);
         desc.innerText = this.desc;
         let rating = element.querySelector(View.ratingId);
-        this.ratingComponent = new Rating(false, this.rating);
-        await this.renderComponent(rating, this.ratingComponent);
+        this.ratingField = new Rating(rating, false, this.rating);
 
-        let commentsContainer = element.querySelector(View.commentsContainer);
-        await this._renderComments(commentsContainer);
+        this.commentsContainer = element.querySelector(View.commentsContainerId);
+        await this._renderComments(this.commentsContainer);
 
         let ingredientsContainer = element.querySelector(View.ingredientsId);
         await this._renderIngredients(ingredientsContainer);
@@ -58,12 +64,14 @@ export class View extends Page {
     }
 
     async _renderComments(container) {
+        container.innerHTML = '';
         for (let i = 0; i < this.comments.length; ++i) {
-            await this.renderComponent(container, new Comment(i, this.comments[i]));
+            new Comment(container, i, false, this.comments[i]);
         }
     }
 
     async _renderIngredients(container) {
+        container.innerHTML = '';
         for (let i = 0; i < this.ingredients.length; ++i) {
             new Ingredient(container, i, false, this.ingredients[i].name, this.ingredients[i].amount);
         }
@@ -75,10 +83,29 @@ export class View extends Page {
         this.name = cocktail.name;
         this._viewDisplayedName = this.name;
         this.by = cocktail.by;
-        this.img = cocktail.img;
         this.desc = cocktail.desc;
         this.rating = cocktail.rating;
         this.ingredients = cocktail.ingredients;
         this.comments = cocktail.comments;
+    }
+
+    _addComment = () => {
+        let comment = new Comment(this.commentsContainer, this.comments.length, true);
+        comment.setOnPublishListener(() => {
+            this._insertComment(comment.json);
+            this.btnAddComment.style.display = '';
+        });
+        this.btnAddComment.style.display = 'none';
+    }
+
+    _insertComment(comment) {
+        cocktails[this.id].comments.push(comment);
+        cocktails[this.id].rating =
+            cocktails[this.id].comments
+                .map(c => c.rating)
+                .reduce((a, b) => a + b, 0) / cocktails[this.id].comments.length;
+        this.ratingField.rating = cocktails[this.id].rating;
+        this._renderComments(this.commentsContainer).then();
+
     }
 }
