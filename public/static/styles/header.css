@@ -44,6 +44,18 @@ header ul li {
     padding: 5px;
 }
 
+.header-right .login {
+    width: auto;
+    height: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    font-family: sans-serif;
+    font-weight: 100;
+    font-size: 1em;
+    color: white;
+    padding: 5px;
+}
+
 @media screen and (max-width: 600px) {
     header {
         height: auto;
